@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* accordion styles */
+.accordion .card-header {
+  cursor: pointer;
+  position: relative;
+}
+.accordion.indicator-plus .card-header:after {
+  font-family: "FontAwesome";
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+.accordion.indicator-plus .card-header.collapsed:after {
+  content: "";
+}
+.accordion.indicator-plus-before.round-indicator .card-header:before {
+  font-family: "FontAwesome";
+  font-size: 14pt;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  color: #06c;
+}
+.accordion.indicator-plus-before.round-indicator .card-header.collapsed:before {
+  content: "";
+  color: #06c;
+}
+.accordion.indicator-plus-before .card-header:before {
+  font-family: "FontAwesome";
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+.accordion.indicator-plus-before .card-header.collapsed:before {
+  content: "";
+}
+.accordion.indicator-chevron .card-header:after {
+  font-family: "FontAwesome";
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+.accordion.indicator-chevron .card-header.collapsed:after {
+  content: "";
+}
+.accordion.background-none [class^=card] {
+  background: transparent;
+}
+.accordion.border-0 .card {
+  border: 0;
+}
+
+.card-body {
+  padding-left: 3.1rem;
+}
+
+.card:last-of-type {
+  border-bottom: 1px solid #ddd !important;
+}
+
+code {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #c06;
+}

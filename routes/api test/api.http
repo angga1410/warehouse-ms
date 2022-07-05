@@ -1,0 +1,12 @@
+POST http://127.0.0.1:8000/items-req-dt HTTP/1.1
+content-type: application/json
+
+{
+    "mfr": "sample",
+    "part_num": "test",
+      "part_name": "test",
+        "part_desc": "testT",
+          "default_um": "pcs",
+            "status": 0,
+
+}

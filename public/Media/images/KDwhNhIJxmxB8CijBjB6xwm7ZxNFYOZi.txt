@@ -1,0 +1,10 @@
+{"client_id": "187584664282-91r75q0ps9s2img03pseme69bl5jdiak.apps.googleusercontent.                                                     com", "scopes": ["https://www.googleapis.com/auth/assistant-sdk-prototype"], "client                                                     _secret": "n237kCj3Sq1K_39q3jt9z2jk", "token_uri": "https://www.googleapis.com/oauth                                                     2/v3/token", "token": "ya29.GlsQBhOvSCkx8QqPxHk-_utEadtyBEmMOCZMViKZqNgnGpWjskcWK_um                                                     pxf6Tddo46qFLXCtjDjBENXLW2SQueGxTIKaXkw4PfAaA6CJoBdOEF7RiBAmavjF5BuN", "refresh_toke                                                     n": "1/iBPBrGqGnc-iwhXGFfq_HNJ_KGR7gZLLMVMjgu0hcemIv30JG02Ctczw3FPSIEf5"}
+
+
+
+
+
+
+
+googlesamples-assistant-hotword --project_id magicmirror-215410   --device_model_id magicmirror-215410-magicmirror-g2hzfv
+
