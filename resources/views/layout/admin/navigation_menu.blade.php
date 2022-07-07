@@ -39,7 +39,7 @@
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                   
                 <i class="m-menu__link-icon flaticon-edit"></i>
-                    <span class="m-menu__link-text">Setup</span>
+                    <span class="m-menu__link-text">Admin</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
@@ -66,6 +66,8 @@
                     <li class="m-menu__item" aria-haspopup="true"><a href="{{url('/supplier-list')}}" class="m-menu__link "><i class="m-menu__link-icon flaticon-shopping-basket"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap"> <span class="m-menu__link-text">Supplier</span>
                     </span></span></a></li>
                     <li class="m-menu__item" aria-haspopup="true"><a href="{{url('/customer-list')}}" class="m-menu__link "><i class="m-menu__link-icon flaticon-shopping-basket"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap"> <span class="m-menu__link-text">Customer</span>
+                    </span></span></a></li>
+                    <li class="m-menu__item" aria-haspopup="true"><a href="{{url('/alt-um')}}" class="m-menu__link "><i class="m-menu__link-icon flaticon-warning-sign"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap"> <span class="m-menu__link-text">Alternate UM</span>
                     </span></span></a></li>
                 </ul>
             </div>

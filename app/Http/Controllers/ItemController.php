@@ -2334,7 +2334,11 @@ class ItemController extends Controller
 					'part_desc' => $get->products->part_desc,
 					'part_num' => $get->products->part_num,
 					'um' => $get->products->default_um,
+					'alt_um' => $get->products->alt_um,
 					'ProdID' => $get->products->ProdID,
+					'qty' => $get->qty,
+					'warehouse' => $get->warehouse->warehouse->name,
+					'location' => $get->warehouse->wh_name,
 					'price' => 0,
 					'curr' => "",
 					// 'do_num' => $qc->reference_do,
@@ -2347,7 +2351,11 @@ class ItemController extends Controller
 					'part_desc' => $get->products->part_desc,
 					'part_num' => $get->products->part_num,
 					'um' => $get->products->default_um,
+					'alt_um' => $get->products->alt_um,
 					'ProdID' => $get->products->ProdID,
+					'qty' => $get->qty,
+					'warehouse' => $get->warehouse->warehouse->name,
+					'location' => $get->warehouse->wh_name,
 					'price' => $price->unit_price,
 					'curr' => $price->curr,
 					// 'do_num' => $qc->reference_do,
@@ -3935,4 +3943,46 @@ class ItemController extends Controller
         }
       
     }
+
+	public function altUM()
+	{
+		$warehouses = WarehouseLoc::orderBy('wh_id', 'DESC')->with('warehouse')->get();
+		$locations = WarehouseLocation::get();
+		$racks = WarehouseRacking::get();
+		$users = User::where("status", 1)->get();
+		return view("item.alt-um", compact('users', 'warehouses', 'locations', 'racks'));
+	}
+
+	public function saveAltUM(Request $request)
+	{
+		
+		$id    		   = $request->get("id");
+		$product_id    = $request->get("product_id");
+		$qty           = $request->get("qty_alt");
+		$alt_um        = $request->get("um_alt");
+	// dd($qty);
+		// $location_id = $request->get("location_id");
+		// $rack_id = $request->get("rack_id");
+
+		for ($i = 0; $i < count($product_id); $i++) {
+			if ($product_id[$i] != null) {
+
+			
+		$reportStatus = ReceiveItemsDetail::where("id", $id[$i])->first();
+		$reportStatus->qty_receive = $qty[$i];
+		$reportStatus->update();
+
+		$items = ItemProduct::where("id", $product_id[$i])->first();
+		$items->alt_um = $alt_um[$i];
+		$items->update();
+
+
+
+			}
+		}
+
+
+		flash()->success("Successfully Store Items.")->important();
+		return redirect()->to('/storing');
+	}
 }

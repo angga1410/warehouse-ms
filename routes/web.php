@@ -499,8 +499,10 @@ Route::post('/delete-qcReturn-serialno','QueueController@deleteQcReturnSerialno'
 	Route::get('/add-new-do-po', 'QueueController@addNewDo');
 	Route::post('/save-po-do','ItemController@savePoDo');
 	
+	Route::get('/alt-um','ItemController@altUM');
+	Route::post('/save-alt-um','ItemController@saveAltUM');
 	
-
+	
 	
 	
 //   });
