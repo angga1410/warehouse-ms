@@ -112,6 +112,7 @@
 							</div>
 					
 					<div class="form-group m-form__group table-responsive">
+<h3>PN Customer</h3>
 						<table class="table m-table m-table--head-bg-metal new_raw m--margin-top-20" id="new_raw_qc"> 
 						<thead>
 					        <tr>
@@ -121,7 +122,7 @@
 					          <th>Part Name</th>
 					          <th>Description</th>
 					          <th>Qty Request</th>
-					          <th>Action</th>
+					        
 					        </tr>
 					    </thead>
 					    <tbody>
@@ -130,6 +131,7 @@
 				        </table>
 					</div>
 					<div class="form-group m-form__group table-responsive">
+					<h3>PN GSPE</h3>
 						<table class="table m-table m-table--head-bg-metal new_raw m--margin-top-20" id="match_pn"> 
 						<thead>
 					        <tr>
@@ -139,7 +141,7 @@
 					          <th>Part Name</th>
 					          <th>Description</th>
 					          <th>Qty Request</th>
-					          <th>Action</th>
+					       
 					        </tr>
 					    </thead>
 					    <tbody>
@@ -165,6 +167,8 @@
 	$(function(){
 	
 		$(".document_no").on("change",function(){
+			var pn_cus = 0;
+	var pn_gspe = 0;
 		$('.reference_id').val('');
 		$('.requester_id').val('');
 		$(".qc-tr").remove();
@@ -172,13 +176,15 @@
 		var type = $(this).find('option:selected').attr('type');
 		$(".reference_id").val(referenceId);
 console.log(referenceId);
+
+function ajax1() {
 		$.ajax({
 	        type:"get",
 	        url: "/do/"+referenceId,
 	        success: function(data) {
-	           //console.log(data);
+	            pn_cus = data.length
 	        $.each(data, function (index, datum) {
-	        	// console.log(datum.name);
+	        
 	          $("#new_raw_qc").append('<tr class="qc-tr">'+
 			'<td><input type="text" class="form-control m-input" name="product_id[]" value="'+datum.id+'" readonly="true" style="width:75px;border:none;"></td>'+
 	          		'<td>'+datum.mfr+'</td>'+
@@ -186,32 +192,20 @@ console.log(referenceId);
 	            	'<td>'+datum.part_name+'</td>'+
 	            	'<td>'+datum.part_desc+'</td>'+
 	            	'<td><input type="text" name="qty_request[]" class="form-control m-input qty_qc" style="width: 100px;" value="'+datum.qty_mr+'" ></td>'+
-					'<td><a class="deleteItem btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air btn-sm"><i class="la la-close"></i></a></td>'+
+				
 	          		'</tr>');
-	            // $("#new_raw_qc").append('<tr class="qc-tr">'+
-	            // 	'<td><input type="text" class="form-control m-input" name="mfr[]" value="'+datum.mfr+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="part_name[]" value="'+datum.part_name+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="description[]" value="'+datum.description+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" name="qty_receive[]" class="form-control m-input qty_qc" style="width: 100px;" value="'+datum.qty_qc+'"  required="true"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="um[]" value="'+datum.um+'" style="width:75px;border:none;"></td>'+
-	            // 	'</tr>');
-	          //   	if(type == 'qc_pass'){
-		        	// 	$(".qty"+index).val(datum.qty_qc);
-		        	// }else{
-		        	// 	console.log(datum.qty_po);
-		        	// 	$(".qty"+index).val(datum.qty_po);
-		        	// }
+	    
 	    		});
 			}
      	});
-
+	}
+	function ajax2() {
 		 $.ajax({
 	        type:"get",
 	        url: "/match-pn/"+referenceId,
 	        success: function(data) {
-	           //console.log(data);
+			   pn_gspe = data.length
 	        $.each(data, function (index, datum) {
-	        	// console.log(datum.name);
 	          $("#match_pn").append('<tr class="qc-tr">'+
 			'<td><input type="text" class="form-control m-input" name="product_id[]" value="'+datum.id+'" readonly="true" style="width:75px;border:none;"></td>'+
 	          		'<td>'+datum.mfr+'</td>'+
@@ -219,24 +213,18 @@ console.log(referenceId);
 	            	'<td>'+datum.part_name+'</td>'+
 	            	'<td>'+datum.part_desc+'</td>'+
 	            	'<td><input type="text" name="qty_request[]" class="form-control m-input qty_qc" style="width: 100px;" value="'+datum.qty_mr+'" ></td>'+
-					'<td><a class="deleteItem btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m-btn--air btn-sm"><i class="la la-close"></i></a></td>'+
+				
 	          		'</tr>');
-	            // $("#new_raw_qc").append('<tr class="qc-tr">'+
-	            // 	'<td><input type="text" class="form-control m-input" name="mfr[]" value="'+datum.mfr+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="part_name[]" value="'+datum.part_name+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="description[]" value="'+datum.description+'" readonly="true" style="width:75px;border:none;"></td>'+
-	            // 	'<td><input type="text" name="qty_receive[]" class="form-control m-input qty_qc" style="width: 100px;" value="'+datum.qty_qc+'"  required="true"></td>'+
-	            // 	'<td><input type="text" class="form-control m-input" name="um[]" value="'+datum.um+'" style="width:75px;border:none;"></td>'+
-	            // 	'</tr>');
-	          //   	if(type == 'qc_pass'){
-		        	// 	$(".qty"+index).val(datum.qty_qc);
-		        	// }else{
-		        	// 	console.log(datum.qty_po);
-		        	// 	$(".qty"+index).val(datum.qty_po);
-		        	// }
+	          
 	    		});
 			}
      	});
+	}
+	$.when(ajax1(), ajax2()).done(function(){
+		console.log("final_cus",pn_cus);
+		 console.log("final_gspe",pn_gspe);
+});
+		
 		 $.ajax({
 	        type:"get",
 	        url: "/mr1/"+referenceId,
@@ -254,10 +242,10 @@ console.log(referenceId);
 	        url: "/get-do/"+referenceId,
 	        success: function(data) {
 	          
-	         console.log(data)
 			 $('.requester_id').val(data.requested_by);
 			}
      	});
+	
 	});
 });
 
